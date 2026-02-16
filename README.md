@@ -6,6 +6,23 @@
 
 An automated USCIS case status checker with Cloudflare bypass, Telegram notifications, and Docker deployment. Never miss an update on your immigration case!
 
+## 🚀 Installation Options
+
+### Option 1: OpenClaw Skill (Recommended)
+
+If you use [OpenClaw](https://github.com/openclaw/openclaw), install with one command:
+
+```bash
+openclaw skill add uscis-case-checker
+openclaw uscis-setup IOE1234567890
+```
+
+[Learn more about OpenClaw integration](#openclaw-skill)
+
+### Option 2: Docker (Traditional)
+
+Follow the [Quick Start](#quick-start) guide below for Docker installation.
+
 ## Features
 
 - 🔐 **Cloudflare Bypass**: Uses [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) to automatically solve Cloudflare challenges
@@ -190,7 +207,9 @@ python src/uscis_checker.py
 .
 ├── src/
 │   └── uscis_checker.py      # Main checker script
-├── .github/workflows/         # CI/CD
+├── openclaw-skill/            # OpenClaw skill files
+│   ├── skill.json            # Skill configuration
+│   └── skill.py              # Skill implementation
 ├── data/                      # Status storage (created on first run)
 ├── .env.example              # Configuration template
 ├── docker-compose.yml        # Docker orchestration
@@ -201,6 +220,46 @@ python src/uscis_checker.py
 ├── CONTRIBUTING.md           # Contribution guidelines
 └── README.md                 # This file
 ```
+
+## OpenClaw Skill
+
+This repository includes an [OpenClaw](https://github.com/openclaw/openclaw) skill for easy management via command line.
+
+### Installation
+
+```bash
+openclaw skill add uscis-case-checker
+```
+
+### Available Commands
+
+| Command | Description |
+|---------|-------------|
+| `uscis-setup [case-number]` | Configure the checker with your case number |
+| `uscis-start` | Start the FlareSolverr monitoring service |
+| `uscis-stop` | Stop the monitoring service |
+| `uscis-check` | Run a one-time status check |
+| `uscis-schedule` | Set up daily automated checks via cron |
+| `uscis-status` | View your current case status |
+| `uscis-logs` | View recent logs |
+
+### Quick Example
+
+```bash
+# Setup your case
+openclaw uscis-setup IOE1234567890
+
+# Start the service
+openclaw uscis-start
+
+# Run a check
+openclaw uscis-check
+
+# Schedule daily checks
+openclaw uscis-schedule
+```
+
+The skill is located in the `openclaw-skill/` directory and can also be installed manually.
 
 ## Contributing
 

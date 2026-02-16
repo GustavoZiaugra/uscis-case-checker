@@ -1,0 +1,48 @@
+{
+  "name": "uscis-case-checker",
+  "version": "1.0.0",
+  "description": "Automated USCIS case status checker with Cloudflare bypass and Telegram notifications",
+  "author": "GustavoZiaugra",
+  "license": "MIT",
+  "repository": "https://github.com/GustavoZiaugra/uscis-case-checker",
+  "keywords": ["uscis", "immigration", "case-status", "cloudflare", "notifications"],
+  "commands": {
+    "uscis-setup": {
+      "description": "Set up USCIS case checker configuration",
+      "usage": "uscis-setup [case-number]",
+      "examples": ["uscis-setup IOE1234567890"]
+    },
+    "uscis-check": {
+      "description": "Run a one-time USCIS case status check",
+      "usage": "uscis-check",
+      "examples": ["uscis-check"]
+    },
+    "uscis-start": {
+      "description": "Start the USCIS monitoring service (FlareSolverr)",
+      "usage": "uscis-start",
+      "examples": ["uscis-start"]
+    },
+    "uscis-stop": {
+      "description": "Stop the USCIS monitoring service",
+      "usage": "uscis-stop",
+      "examples": ["uscis-stop"]
+    },
+    "uscis-schedule": {
+      "description": "Set up daily automated checks via cron",
+      "usage": "uscis-schedule",
+      "examples": ["uscis-schedule"]
+    },
+    "uscis-status": {
+      "description": "View current USCIS case status",
+      "usage": "uscis-status",
+      "examples": ["uscis-status"]
+    },
+    "uscis-logs": {
+      "description": "View USCIS checker logs",
+      "usage": "uscis-logs",
+      "examples": ["uscis-logs"]
+    }
+  },
+  "requirements": ["docker", "docker-compose"],
+  "entry_point": "skill.py"
+}
