@@ -1,0 +1,24 @@
+services:
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    environment:
+      - LOG_LEVEL=info
+      - TZ=America/New_York
+    ports:
+      - "8191:8191"
+    restart: unless-stopped
+
+  uscis-checker:
+    build: .
+    environment:
+      - USCIS_CASE_NUMBER=${USCIS_CASE_NUMBER}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+      - FLARESOLVERR_URL=http://flaresolverr:8191
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - flaresolverr
+    # No restart policy - runs once per cron job
