@@ -93,8 +93,9 @@ async def get_flaresolverr_cookies() -> tuple:
         payload = {
             "cmd": "request.get",
             "url": "https://egov.uscis.gov/casestatus/landing.do",
-            "maxTimeout": 60000,
+            "maxTimeout": 120000,
             "disableMedia": True,
+            "session": "uscis_session",
         }
 
         async with session.post(f"{FLARESOLVERR_URL}/v1", json=payload) as response:
