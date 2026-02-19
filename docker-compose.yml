@@ -1,10 +1,11 @@
 services:
   flaresolverr:
-    image: ghcr.io/flaresolverr/flaresolverr:latest
+    image: ghcr.io/flaresolverr/flaresolverr:v3.3.21
     container_name: flaresolverr
     environment:
-      - LOG_LEVEL=info
+      - LOG_LEVEL=debug
       - TZ=America/New_York
+      - CAPTCHA_SOLVER=none
     ports:
       - "8191:8191"
     restart: unless-stopped
